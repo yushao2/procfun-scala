@@ -38,6 +38,14 @@ class FunSetSuite {
     val s1 = singletonSet(1)
     val s2 = singletonSet(2)
     val s3 = singletonSet(3)
+    val s4 = singletonSet(4)
+    val s5 = singletonSet(5)
+    val s6 = singletonSet(6)
+    val s7 = singletonSet(7)
+    val s8 = singletonSet(8)
+    val s9 = singletonSet(9)
+    val s10 = singletonSet(10)
+
   }
 
   /**
@@ -47,7 +55,7 @@ class FunSetSuite {
    * Once you finish your implementation of "singletonSet", remvoe the
    * @Ignore annotation.
    */
-  @Ignore("not ready yet") @Test def `singleton set one contains one`: Unit = {
+  @Test def `singleton set one contains one`: Unit = {
 
     /**
      * We create a new instance of the "TestSets" trait, this gives us access
@@ -71,6 +79,37 @@ class FunSetSuite {
     }
   }
 
+  @Test def `Filter Even`: Unit = {
+    new TestSets {
+      val s = union(union(union(union(union(union(union(union(union(s1, s2),s3),s4),s5),s6),s7),s8),s9),s10)
+      val filtered = filter(s, x => (x%2 == 0))
+      printSet(filtered)
+      assert(contains(filtered, 2), "Even")
+      assert(!contains(filtered, 3), "Odd")
+    }
+  }
+
+  @Test def `Exists`: Unit = {
+    new TestSets {
+      val s = union(union(union(union(union(union(union(union(union(s1, s2),s3),s4),s5),s6),s7),s8),s9),s10)
+      assert(!exists(s, x => x == 11))
+    }
+  }
+
+  @Test def `Forall`: Unit = {
+    new TestSets {
+      val s = union(union(union(union(union(union(union(union(union(s1, s2),s3),s4),s5),s6),s7),s8),s9),s10)
+      assert(forall(s, x => x > 0 && x < 11))
+    }
+  }
+
+  @Test def `Map`: Unit = {
+    new TestSets {
+      val s = union(union(union(union(union(union(union(union(union(s1, s2),s3),s4),s5),s6),s7),s8),s9),s10)
+      val mapped = map(s, x => 2*x)
+      assert(forall(mapped, x => (x%2 == 0 && x > 1 && x < 21)))
+    }
+  }
 
 
   @Rule def individualTestTimeout = new org.junit.rules.Timeout(10 * 1000)
