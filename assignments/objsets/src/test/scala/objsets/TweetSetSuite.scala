@@ -60,6 +60,12 @@ class TweetSetSuite {
       assert(trends.head.user == "a" || trends.head.user == "b")
     }
 
+  @Test def `most retweeted`: Unit =
+    new TestSets {
+      val mostRT = set5.mostRetweeted
+      assert(mostRT.retweets == 20)
+    }
+
 
   @Rule def individualTestTimeout = new org.junit.rules.Timeout(10 * 1000)
 }
