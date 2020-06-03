@@ -26,6 +26,9 @@ class HuffmanSuite {
   @Test def `string2chars hello world`: Unit =
     assertEquals(List('h', 'e', 'l', 'l', 'o', ',', ' ', 'w', 'o', 'r', 'l', 'd'), string2Chars("hello, world"))
 
+  @Test def `Decoded secret `: Unit =
+    assertEquals("huffmanestcool".toList, decodedSecret)
+
 
   @Test def `make ordered leaf list for some frequency table (15pts)`: Unit =
     assertEquals(List(Leaf('e',1), Leaf('t',2), Leaf('x',3)), makeOrderedLeafList(List(('t', 2), ('e', 1), ('x', 3))))
@@ -40,6 +43,19 @@ class HuffmanSuite {
   @Test def `decode and encode a very short text should be identity (10pts)`: Unit =
     new TestTrees {
       assertEquals("ab".toList, decode(t1, encode(t1)("ab".toList)))
+    }
+
+  @Test def `decode and quickencode a very short text should be identity (10pts)`: Unit =
+    new TestTrees {
+      assertEquals("ab".toList, decode(t1, quickEncode(t1)("ab".toList)))
+    }
+
+  @Test def `singleton test`: Unit =
+    new TestTrees {
+      assertEquals(singleton(List(Leaf('a', 3))), true)
+      assertEquals(singleton(List()), false)
+      assertEquals(singleton(List(Leaf('a', 3), Leaf('a', 3))), false)
+
     }
 
 
